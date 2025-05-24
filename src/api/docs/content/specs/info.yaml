@@ -1338,6 +1338,7 @@ components:
               pruned_4: 0
               allocated_6: 0
               pruned_6: 0
+        took: 0.003
 
   parameters:
     logs:
