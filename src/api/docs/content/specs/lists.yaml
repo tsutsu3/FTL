@@ -4,19 +4,19 @@ components:
     list:
       summary: Modify list
       get:
-        summary: Get lists
+        summary: Get list
         parameters:
           - $ref: 'lists.yaml#/components/parameters/list'
           - $ref: 'lists.yaml#/components/parameters/listtype_optional'
         tags:
           - "List management"
-        operationId: "get_lists"
+        operationId: "get_list"
         description: |
-          `{list}` is optional. Specifying it will result in only the requested list being returned.
+          Returns the list with address `{list}`.
+          As the same address can be registered both as a *block* and an *allow* list, this may return more than one entry.
+          Use the optional `type` query parameter to restrict the result to a single list type.
 
-          Valid combinations are:
-          - `/api/lists` (all lists)
-          - `/api/lists/my_list` (list identical to `my_list`)
+          To get all lists, use `GET /api/lists` instead.
         responses:
           '200':
             description: OK
@@ -129,6 +129,35 @@ components:
                     - $ref: 'common.yaml#/components/errors/unauthorized'
                     - $ref: 'common.yaml#/components/schemas/took'
     direct:
+      get:
+        summary: Get lists
+        parameters:
+          - $ref: 'lists.yaml#/components/parameters/listtype_optional'
+        tags:
+          - "List management"
+        operationId: "list_lists"
+        description: |
+          Returns all lists. Use the optional `type` query parameter to restrict the result to either *block* or *allow* lists.
+        responses:
+          '200':
+            description: OK
+            content:
+              application/json:
+                schema:
+                  allOf:
+                    - $ref: 'lists.yaml#/components/schemas/lists/get'
+                    - $ref: 'common.yaml#/components/schemas/took'
+                examples:
+                  lists:
+                    $ref: 'lists.yaml#/components/examples/lists'
+          '401':
+            description: Unauthorized
+            content:
+              application/json:
+                schema:
+                  allOf:
+                    - $ref: 'common.yaml#/components/errors/unauthorized'
+                    - $ref: 'common.yaml#/components/schemas/took'
       post:
         summary: Add new list
         tags:

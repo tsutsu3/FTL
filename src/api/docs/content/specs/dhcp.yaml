@@ -5,7 +5,7 @@ components:
       get:
         summary: Get currently active DHCP leases
         tags:
-          - "DHCP"
+          - "DHCP server control"
         operationId: "get_dhcp"
         description: |
           This API hook returns the currently active DHCP leases.
@@ -32,7 +32,7 @@ components:
       delete:
         summary: Remove DHCP lease
         tags:
-          - "DHCP"
+          - "DHCP server control"
         operationId: "delete_dhcp"
         description: |
           This API hook removes a currently active DHCP lease.
