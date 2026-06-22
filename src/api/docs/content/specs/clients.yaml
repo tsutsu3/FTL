@@ -6,16 +6,14 @@ components:
       parameters:
         - $ref: 'clients.yaml#/components/parameters/client'
       get:
-        summary: Get clients
+        summary: Get client
         tags:
           - "Client management"
-        operationId: "get_clients"
+        operationId: "get_client"
         description: |
-          `{client}` is optional. If it is specified, it will result in only the requested client being returned. This parameter needs to be URI-encoded.
+          Returns the requested client. `{client}` parameter needs to be URI-encoded.
 
-          Valid combinations are:
-          - `/api/clients` (all clients)
-          - `/api/clients/my_client` (client identical to `my_client`)
+          To get all clients, use `GET /api/clients` instead.
         responses:
           '200':
             description: OK
@@ -148,6 +146,33 @@ components:
                     - $ref: 'common.yaml#/components/errors/unauthorized'
                     - $ref: 'common.yaml#/components/schemas/took'
     direct:
+      get:
+        summary: Get clients
+        tags:
+          - "Client management"
+        operationId: "list_clients"
+        description: |
+          Returns all clients.
+        responses:
+          '200':
+            description: OK
+            content:
+              application/json:
+                schema:
+                  allOf:
+                    - $ref: 'clients.yaml#/components/schemas/clients/get'
+                    - $ref: 'common.yaml#/components/schemas/took'
+                examples:
+                  clients:
+                    $ref: 'clients.yaml#/components/examples/clients'
+          '401':
+            description: Unauthorized
+            content:
+              application/json:
+                schema:
+                  allOf:
+                    - $ref: 'common.yaml#/components/errors/unauthorized'
+                    - $ref: 'common.yaml#/components/schemas/took'
       post:
         summary: Add new client
         tags:

@@ -6,16 +6,14 @@ components:
       parameters:
         - $ref: 'groups.yaml#/components/parameters/name'
       get:
-        summary: Get groups
+        summary: Get group
         tags:
           - "Group management"
-        operationId: "get_groups"
+        operationId: "get_group"
         description: |
-          `{name}` is optional. Specifying it will result in only the requested group being returned.
+          Returns the group identical to `{name}`.
 
-          Valid combinations are:
-          - `/api/groups` (all groups)
-          - `/api/groups/my_group` (group identical to `my_group`)
+          To get all groups, use `GET /api/groups` instead.
         responses:
           '200':
             description: OK
@@ -125,6 +123,33 @@ components:
                     - $ref: 'common.yaml#/components/errors/unauthorized'
                     - $ref: 'common.yaml#/components/schemas/took'
     direct:
+      get:
+        summary: Get groups
+        tags:
+          - "Group management"
+        operationId: "list_groups"
+        description: |
+          Returns all groups.
+        responses:
+          '200':
+            description: OK
+            content:
+              application/json:
+                schema:
+                  allOf:
+                    - $ref: 'groups.yaml#/components/schemas/groups/get'
+                    - $ref: 'common.yaml#/components/schemas/took'
+                examples:
+                  groups:
+                    $ref: 'groups.yaml#/components/examples/groups'
+          '401':
+            description: Unauthorized
+            content:
+              application/json:
+                schema:
+                  allOf:
+                    - $ref: 'common.yaml#/components/errors/unauthorized'
+                    - $ref: 'common.yaml#/components/schemas/took'
       post:
         summary: Add new group
         tags:
