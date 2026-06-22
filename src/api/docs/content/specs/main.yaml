@@ -67,6 +67,8 @@ tags:
     description: Methods used to trigger certain actions on your Pi-hole
   - name: "PADD"
     description: Methods used to query Pi-hole from PADD
+  - name: "Documentation"
+    description: Methods used to access the API documentation
 
 
 
