@@ -59,6 +59,8 @@ tags:
     description: Methods used to gather advanced data from your Pi-hole
   - name: "Pi-hole configuration"
     description: Methods used to configure your Pi-hole
+  - name: "Teleporter"
+    description: Methods used to import and export Pi-hole settings
   - name: "Network information"
     description: Methods used to gather advanced information about your network
   - name: "Actions"

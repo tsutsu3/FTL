@@ -5,7 +5,7 @@ components:
       get:
         summary: Export Pi-hole settings
         tags:
-          - "Pi-hole configuration"
+          - "Teleporter"
         operationId: "get_teleporter"
         description: |
           Request an archived copy of your Pi-hole's current configuration.
@@ -29,7 +29,7 @@ components:
       post:
         summary: Import Pi-hole settings
         tags:
-          - "Pi-hole configuration"
+          - "Teleporter"
         operationId: "post_teleporter"
         description: |
           Upload a Pi-hole Teleporter archive to (partially) restore from it. Note that this will overwrite your current configuration.
