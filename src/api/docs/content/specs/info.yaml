@@ -7,7 +7,7 @@ components:
         tags:
           - "FTL information"
         security: []
-        operationId: "get_client"
+        operationId: "get_clientinfo"
         description: |
           The property `timer` may contain additional details concerning a temporary en-/disabling.
           It is `null` when no timer is active (the current status is permanent).
