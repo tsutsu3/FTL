@@ -90,6 +90,12 @@ components:
         responses:
           '200':
             description: OK
+            content:
+              application/json:
+                schema:
+                  allOf:
+                    - $ref: 'config.yaml#/components/schemas/config'
+                    - $ref: 'common.yaml#/components/schemas/took'
           '401':
             description: Unauthorized
             content:
